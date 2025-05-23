@@ -1,0 +1,26 @@
+name: Import Postman Collection
+
+on:
+  push:
+    paths:
+      - "collections/*.json"  # Adjust path as needed
+
+jobs:
+  import_collection:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repo
+      uses: actions/checkout@v3
+
+    - name: Import Collection to Postman
+      env:
+        POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
+        COLLECTION_FILE: collections/my_collection.json  # Adjust as needed
+        COLLECTION_UID: 40464893-4b84127a-0d19-42d4-92f1-418b70cdafae
+
+      run: |
+        curl --location --request PUT "https://api.getpostman.com/collections/$COLLECTION_UID" \
+        --header "X-Api-Key: $POSTMAN_API_KEY" \
+        --header "Content-Type: application/json" \
+        --data "@$COLLECTION_FILE"
