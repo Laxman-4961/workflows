@@ -3,7 +3,7 @@ name: Postman to IBM APIC Automation
 on:
   push:
     paths:
-      - "collections/*.json"  # Your Postman collection JSONs in repo
+      - "API/*.json"  # Your Postman collection JSONs in repo
 
 jobs:
   import_and_discover:
