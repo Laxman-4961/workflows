@@ -11,7 +11,7 @@ jobs:
 
     env:
       APIKEY: ${{ secrets.POSTMAN_API_KEY }}
-      COLLECTION_FILE: API/DocuSeal.JSON   # Adjust as needed
+      COLLECTION_FILE: API/DocuSeal.json   # Adjust as needed
 
     steps:
       - name: Checkout repo
