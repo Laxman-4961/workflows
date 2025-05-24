@@ -17,7 +17,7 @@ jobs:
         id: get_uid
         env:
           POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
-          COLLECTION_NAME: API/sample.json
+          COLLECTION_NAME: API/DocuSeal.json
         run: |
           COLLECTION_UID=$(curl -s --location --request GET "https://api.getpostman.com/collections" \
             --header "X-Api-Key: $POSTMAN_API_KEY" | \
