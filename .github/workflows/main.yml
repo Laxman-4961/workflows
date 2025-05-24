@@ -4,39 +4,10 @@ on:
   push:
     branches:
       - main
-
 jobs:
-  import_collection:
+  test:
     runs-on: ubuntu-latest
-
+    env:
+      POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v3
-
-      - name: Get Collection UID from Postman
-        id: get_uid
-        env:
-          POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
-          COLLECTION_NAME: API/DocuSeal.json
-        run: |
-          COLLECTION_UID=$(curl -s --location --request GET "https://api.getpostman.com/collections" \
-            --header "X-Api-Key: $POSTMAN_API_KEY" | \
-            jq -r --arg NAME "$COLLECTION_NAME" '.collections[] | select(.name == $NAME) | .id')
-
-          if [ -z "$COLLECTION_UID" ]; then
-            echo "Collection with name '$COLLECTION_NAME' not found"
-            exit 1
-          fi
-
-          echo "COLLECTION_UID=$COLLECTION_UID" >> $GITHUB_ENV
-
-      - name: Import Collection to Postman
-        env:
-          POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
-          COLLECTION_FILE: collections/API/DocuSeal.json  # Adjust if needed
-          COLLECTION_UID: ${{ env.COLLECTION_UID }}
-        run: |
-          curl --location --request PUT "https://api.getpostman.com/collections/$COLLECTION_UID" \
-          --header "X-Api-Key: $POSTMAN_API_KEY" \
-          --header "Content-Type: application/json" \
-          --data "@$COLLECTION_FILE"
+      - run: echo "$POSTMAN_API_KEY"
