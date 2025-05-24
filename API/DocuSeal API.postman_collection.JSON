@@ -1,0 +1,1922 @@
+{
+	"info": {
+		"_postman_id": "03d258cc-4d01-4a0f-954e-f2eff73328fe",
+		"name": "DocuSeal API",
+		"description": "#### **Start using the DocuSeal Postman Collection**\n\n1. Visit the [DocuSeal Console](https://console.docuseal.com/api) and copy the X-Auth-Token.\n    \n2. Add the copied value as an API key in the header\n    \n\nCheck out [DocuSeal's API Documentation<br><br>](https://www.docuseal.com/docs/api)**API SDK**\n\n- TypeScript / JavaScript - [https://github.com/docusealco/docuseal-js](https://github.com/docusealco/docuseal-js)\n    \n- Python - [https://github.com/docusealco/docuseal-python](https://github.com/docusealco/docuseal-python)\n    \n- Ruby - [https://github.com/docusealco/docuseal-ruby](https://github.com/docusealco/docuseal-ruby)\n    \n- PHP - [https://github.com/docusealco/docuseal-php](https://github.com/docusealco/docuseal-php)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40464893",
+		"_collection_link": "https://www.postman.com/docuseal/docuseal/collection/baauu23/docuseal-api?action=share&source=collection_link&creator=40464893"
+	},
+	"item": [
+		{
+			"name": "templates",
+			"item": [
+				{
+					"name": "{id}",
+					"item": [
+						{
+							"name": "clone",
+							"item": [
+								{
+									"name": "Clone a template",
+									"request": {
+										"auth": {
+											"type": "apikey",
+											"apikey": [
+												{
+													"key": "key",
+													"value": "X-Auth-Token",
+													"type": "string"
+												},
+												{
+													"key": "value",
+													"value": "{{apiKey}}",
+													"type": "string"
+												},
+												{
+													"key": "in",
+													"value": "header",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"folder_name\": \"<string>\",\n  \"name\": \"<string>\",\n  \"application_key\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/templates/:id/clone",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"templates",
+												":id",
+												"clone"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "<integer>",
+													"description": "(Required) The unique identifier of the document template."
+												}
+											]
+										},
+										"description": "The API endpoint allows to clone existing template into a new template."
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													},
+													{
+														"key": "X-Auth-Token",
+														"value": "<API Key>",
+														"description": "Added as a part of security scheme: apikey"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"folder_name\": \"<string>\",\n  \"name\": \"<string>\",\n  \"application_key\": \"<string>\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/templates/:id/clone",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"templates",
+														":id",
+														"clone"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "null"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Get a template",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "X-Auth-Token",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "{{apiKey}}",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/templates/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"templates",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "<integer>",
+											"description": "(Required) The unique identifier of the document template."
+										}
+									]
+								},
+								"description": "The API endpoint provides the functionality to retrieve information about a document template."
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "X-Auth-Token",
+												"value": "<API Key>",
+												"description": "Added as a part of security scheme: apikey"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/templates/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"templates",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "null"
+								}
+							]
+						},
+						{
+							"name": "Archive a template",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "X-Auth-Token",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "{{apiKey}}",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/templates/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"templates",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "<integer>",
+											"description": "(Required) The unique identifier of the document template."
+										}
+									]
+								},
+								"description": "The API endpoint allows to archive a document template."
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "X-Auth-Token",
+												"value": "<API Key>",
+												"description": "Added as a part of security scheme: apikey"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/templates/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"templates",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"example\": {\n    \"id\": 1,\n    \"deleted_at\": \"2023-12-14T15:50:21.799Z\"\n  }\n}"
+								}
+							]
+						},
+						{
+							"name": "Move a template to a different folder",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "X-Auth-Token",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "{{apiKey}}",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"template\": {\n    \"folder_name\": \"<string>\"\n  }\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/templates/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"templates",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "<integer>",
+											"description": "(Required) The unique identifier of the document template."
+										}
+									]
+								},
+								"description": "The API endpoint provides the functionality to move a document template to a different folder."
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "X-Auth-Token",
+												"value": "<API Key>",
+												"description": "Added as a part of security scheme: apikey"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"template\": {\n    \"folder_name\": \"<string>\"\n  }\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/templates/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"templates",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"example\": {\n    \"id\": 1,\n    \"updated_at\": \"2023-12-14T15:50:21.799Z\"\n  }\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "html",
+					"item": [
+						{
+							"name": "Create a template from HTML",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "X-Auth-Token",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "{{apiKey}}",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"html\": \"<string>\",\n  \"folder_name\": \"<string>\",\n  \"name\": \"<string>\",\n  \"size\": \"Letter\",\n  \"application_key\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/templates/html",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"templates",
+										"html"
+									]
+								},
+								"description": "The API endpoint provides the functionality to seamlessly generate a PDF document template by utilizing the provided HTML content while incorporating pre-defined fields."
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "X-Auth-Token",
+												"value": "<API Key>",
+												"description": "Added as a part of security scheme: apikey"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"html\": \"<string>\",\n  \"folder_name\": \"<string>\",\n  \"name\": \"<string>\",\n  \"size\": \"Letter\",\n  \"application_key\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/templates/html",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"templates",
+												"html"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "null"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "docx",
+					"item": [
+						{
+							"name": "Create a template from Word DOCX",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "X-Auth-Token",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "{{apiKey}}",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"folder_name\": \"<string>\",\n  \"documents\": [\n    {\n      \"name\": \"<string>\",\n      \"file\": \"<string>\",\n      \"fields\": [\n        {\n          \"name\": \"<string>\",\n          \"role\": \"<string>\",\n          \"type\": \"phone\",\n          \"areas\": [\n            {\n              \"x\": \"<number>\",\n              \"y\": \"<number>\",\n              \"w\": \"<number>\",\n              \"h\": \"<number>\",\n              \"page\": \"<integer>\"\n            },\n            {\n              \"x\": \"<number>\",\n              \"y\": \"<number>\",\n              \"w\": \"<number>\",\n              \"h\": \"<number>\",\n              \"page\": \"<integer>\"\n            }\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"role\": \"<string>\",\n          \"type\": \"text\",\n          \"areas\": [\n            {\n              \"x\": \"<number>\",\n              \"y\": \"<number>\",\n              \"w\": \"<number>\",\n              \"h\": \"<number>\",\n              \"page\": \"<integer>\"\n            },\n            {\n              \"x\": \"<number>\",\n              \"y\": \"<number>\",\n              \"w\": \"<number>\",\n              \"h\": \"<number>\",\n              \"page\": \"<integer>\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"file\": \"<string>\",\n      \"fields\": [\n        {\n          \"name\": \"<string>\",\n          \"role\": \"<string>\",\n          \"type\": \"checkbox\",\n          \"areas\": [\n            {\n              \"x\": \"<number>\",\n              \"y\": \"<number>\",\n              \"w\": \"<number>\",\n              \"h\": \"<number>\",\n              \"page\": \"<integer>\"\n            },\n            {\n              \"x\": \"<number>\",\n              \"y\": \"<number>\",\n              \"w\": \"<number>\",\n              \"h\": \"<number>\",\n              \"page\": \"<integer>\"\n            }\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"role\": \"<string>\",\n          \"type\": \"checkbox\",\n          \"areas\": [\n            {\n              \"x\": \"<number>\",\n              \"y\": \"<number>\",\n              \"w\": \"<number>\",\n              \"h\": \"<number>\",\n              \"page\": \"<integer>\"\n            },\n            {\n              \"x\": \"<number>\",\n              \"y\": \"<number>\",\n              \"w\": \"<number>\",\n              \"h\": \"<number>\",\n              \"page\": \"<integer>\"\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"name\": \"<string>\",\n  \"application_key\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/templates/docx",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"templates",
+										"docx"
+									]
+								},
+								"description": "The API endpoint provides the functionality to create a fillable document template for existing Microsoft Word document. Use <code>{{Field Name;role=Signer1;type=date}}</code> text tags to define fillable fields in the document. See <a href=\"https://www.docuseal.co/examples/fieldtags.docx\" target=\"_blank\" class=\"link font-bold\" >https://www.docuseal.co/examples/fieldtags.docx</a> for more text tag formats. Or specify the exact pixel coordinates of the document fields using `fields` param.'\n"
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "X-Auth-Token",
+												"value": "<API Key>",
+												"description": "Added as a part of security scheme: apikey"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"folder_name\": \"<string>\",\n  \"documents\": [\n    {\n      \"name\": \"<string>\",\n      \"file\": \"<string>\",\n      \"fields\": [\n        {\n          \"name\": \"<string>\",\n          \"role\": \"<string>\",\n          \"type\": \"phone\",\n          \"areas\": [\n            {\n              \"x\": \"<number>\",\n              \"y\": \"<number>\",\n              \"w\": \"<number>\",\n              \"h\": \"<number>\",\n              \"page\": \"<integer>\"\n            },\n            {\n              \"x\": \"<number>\",\n              \"y\": \"<number>\",\n              \"w\": \"<number>\",\n              \"h\": \"<number>\",\n              \"page\": \"<integer>\"\n            }\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"role\": \"<string>\",\n          \"type\": \"text\",\n          \"areas\": [\n            {\n              \"x\": \"<number>\",\n              \"y\": \"<number>\",\n              \"w\": \"<number>\",\n              \"h\": \"<number>\",\n              \"page\": \"<integer>\"\n            },\n            {\n              \"x\": \"<number>\",\n              \"y\": \"<number>\",\n              \"w\": \"<number>\",\n              \"h\": \"<number>\",\n              \"page\": \"<integer>\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"file\": \"<string>\",\n      \"fields\": [\n        {\n          \"name\": \"<string>\",\n          \"role\": \"<string>\",\n          \"type\": \"checkbox\",\n          \"areas\": [\n            {\n              \"x\": \"<number>\",\n              \"y\": \"<number>\",\n              \"w\": \"<number>\",\n              \"h\": \"<number>\",\n              \"page\": \"<integer>\"\n            },\n            {\n              \"x\": \"<number>\",\n              \"y\": \"<number>\",\n              \"w\": \"<number>\",\n              \"h\": \"<number>\",\n              \"page\": \"<integer>\"\n            }\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"role\": \"<string>\",\n          \"type\": \"checkbox\",\n          \"areas\": [\n            {\n              \"x\": \"<number>\",\n              \"y\": \"<number>\",\n              \"w\": \"<number>\",\n              \"h\": \"<number>\",\n              \"page\": \"<integer>\"\n            },\n            {\n              \"x\": \"<number>\",\n              \"y\": \"<number>\",\n              \"w\": \"<number>\",\n              \"h\": \"<number>\",\n              \"page\": \"<integer>\"\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"name\": \"<string>\",\n  \"application_key\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/templates/docx",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"templates",
+												"docx"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "null"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "pdf",
+					"item": [
+						{
+							"name": "Create a template from existing PDF",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "X-Auth-Token",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "{{apiKey}}",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"folder_name\": \"<string>\",\n  \"documents\": [\n    {\n      \"name\": \"<string>\",\n      \"file\": \"<string>\",\n      \"fields\": [\n        {\n          \"name\": \"<string>\",\n          \"role\": \"<string>\",\n          \"type\": \"file\",\n          \"areas\": [\n            {\n              \"x\": \"<number>\",\n              \"y\": \"<number>\",\n              \"w\": \"<number>\",\n              \"h\": \"<number>\",\n              \"page\": \"<integer>\"\n            },\n            {\n              \"x\": \"<number>\",\n              \"y\": \"<number>\",\n              \"w\": \"<number>\",\n              \"h\": \"<number>\",\n              \"page\": \"<integer>\"\n            }\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"role\": \"<string>\",\n          \"type\": \"phone\",\n          \"areas\": [\n            {\n              \"x\": \"<number>\",\n              \"y\": \"<number>\",\n              \"w\": \"<number>\",\n              \"h\": \"<number>\",\n              \"page\": \"<integer>\"\n            },\n            {\n              \"x\": \"<number>\",\n              \"y\": \"<number>\",\n              \"w\": \"<number>\",\n              \"h\": \"<number>\",\n              \"page\": \"<integer>\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"file\": \"<string>\",\n      \"fields\": [\n        {\n          \"name\": \"<string>\",\n          \"role\": \"<string>\",\n          \"type\": \"image\",\n          \"areas\": [\n            {\n              \"x\": \"<number>\",\n              \"y\": \"<number>\",\n              \"w\": \"<number>\",\n              \"h\": \"<number>\",\n              \"page\": \"<integer>\"\n            },\n            {\n              \"x\": \"<number>\",\n              \"y\": \"<number>\",\n              \"w\": \"<number>\",\n              \"h\": \"<number>\",\n              \"page\": \"<integer>\"\n            }\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"role\": \"<string>\",\n          \"type\": \"signature\",\n          \"areas\": [\n            {\n              \"x\": \"<number>\",\n              \"y\": \"<number>\",\n              \"w\": \"<number>\",\n              \"h\": \"<number>\",\n              \"page\": \"<integer>\"\n            },\n            {\n              \"x\": \"<number>\",\n              \"y\": \"<number>\",\n              \"w\": \"<number>\",\n              \"h\": \"<number>\",\n              \"page\": \"<integer>\"\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"name\": \"<string>\",\n  \"application_key\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/templates/pdf",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"templates",
+										"pdf"
+									]
+								},
+								"description": "The API endpoint provides the functionality to create a fillable document template for existing PDF file. Use <code>{{Field Name;role=Signer1;type=date}}</code> text tags to define fillable fields in the document. See <a href=\"https://www.docuseal.co/examples/fieldtags.pdf\" target=\"_blank\" class=\"link font-bold\">https://www.docuseal.co/examples/fieldtags.pdf</a> for more text tag formats. Or specify the exact pixel coordinates of the document fields using `fields` param.'\n"
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "X-Auth-Token",
+												"value": "<API Key>",
+												"description": "Added as a part of security scheme: apikey"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"folder_name\": \"<string>\",\n  \"documents\": [\n    {\n      \"name\": \"<string>\",\n      \"file\": \"<string>\",\n      \"fields\": [\n        {\n          \"name\": \"<string>\",\n          \"role\": \"<string>\",\n          \"type\": \"file\",\n          \"areas\": [\n            {\n              \"x\": \"<number>\",\n              \"y\": \"<number>\",\n              \"w\": \"<number>\",\n              \"h\": \"<number>\",\n              \"page\": \"<integer>\"\n            },\n            {\n              \"x\": \"<number>\",\n              \"y\": \"<number>\",\n              \"w\": \"<number>\",\n              \"h\": \"<number>\",\n              \"page\": \"<integer>\"\n            }\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"role\": \"<string>\",\n          \"type\": \"phone\",\n          \"areas\": [\n            {\n              \"x\": \"<number>\",\n              \"y\": \"<number>\",\n              \"w\": \"<number>\",\n              \"h\": \"<number>\",\n              \"page\": \"<integer>\"\n            },\n            {\n              \"x\": \"<number>\",\n              \"y\": \"<number>\",\n              \"w\": \"<number>\",\n              \"h\": \"<number>\",\n              \"page\": \"<integer>\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"file\": \"<string>\",\n      \"fields\": [\n        {\n          \"name\": \"<string>\",\n          \"role\": \"<string>\",\n          \"type\": \"image\",\n          \"areas\": [\n            {\n              \"x\": \"<number>\",\n              \"y\": \"<number>\",\n              \"w\": \"<number>\",\n              \"h\": \"<number>\",\n              \"page\": \"<integer>\"\n            },\n            {\n              \"x\": \"<number>\",\n              \"y\": \"<number>\",\n              \"w\": \"<number>\",\n              \"h\": \"<number>\",\n              \"page\": \"<integer>\"\n            }\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"role\": \"<string>\",\n          \"type\": \"signature\",\n          \"areas\": [\n            {\n              \"x\": \"<number>\",\n              \"y\": \"<number>\",\n              \"w\": \"<number>\",\n              \"h\": \"<number>\",\n              \"page\": \"<integer>\"\n            },\n            {\n              \"x\": \"<number>\",\n              \"y\": \"<number>\",\n              \"w\": \"<number>\",\n              \"h\": \"<number>\",\n              \"page\": \"<integer>\"\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"name\": \"<string>\",\n  \"application_key\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/templates/pdf",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"templates",
+												"pdf"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "null"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "List all templates",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "X-Auth-Token",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{apiKey}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/templates?application_key=<string>&folder=<string>&archived=<boolean>&limit=<integer>&before=<integer>&after=<integer>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"templates"
+							],
+							"query": [
+								{
+									"key": "application_key",
+									"value": "<string>",
+									"description": "The unique applications-specific identifier provided for the template via API or Embedded template form builder. Allows to receive only templates with your specified application key."
+								},
+								{
+									"key": "folder",
+									"value": "<string>",
+									"description": "Filter templates by folder name."
+								},
+								{
+									"key": "archived",
+									"value": "<boolean>",
+									"description": "Get only archived templates instead of active ones."
+								},
+								{
+									"key": "limit",
+									"value": "<integer>",
+									"description": "The number of templates to return. Default value is 10. Maximum value is 100."
+								},
+								{
+									"key": "before",
+									"value": "<integer>",
+									"description": "The unique identifier of the template to end the list with. Allows to receive only templates with id less than the specified value."
+								},
+								{
+									"key": "after",
+									"value": "<integer>",
+									"description": "The unique identifier of the template to start the list from. Allows to receive only templates with id greater than the specified value."
+								}
+							]
+						},
+						"description": "The API endpoint provides the ability to retrieve a list of available document templates."
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "X-Auth-Token",
+										"value": "<API Key>",
+										"description": "Added as a part of security scheme: apikey"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/templates?application_key=<string>&folder=<string>&archived=<boolean>&limit=<integer>&before=<integer>&after=<integer>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"templates"
+									],
+									"query": [
+										{
+											"key": "application_key",
+											"value": "<string>",
+											"description": "The unique applications-specific identifier provided for the template via API or Embedded template form builder. Allows to receive only templates with your specified application key."
+										},
+										{
+											"key": "folder",
+											"value": "<string>",
+											"description": "Filter templates by folder name."
+										},
+										{
+											"key": "archived",
+											"value": "<boolean>",
+											"description": "Get only archived templates instead of active ones."
+										},
+										{
+											"key": "limit",
+											"value": "<integer>",
+											"description": "The number of templates to return. Default value is 10. Maximum value is 100."
+										},
+										{
+											"key": "before",
+											"value": "<integer>",
+											"description": "The unique identifier of the template to end the list with. Allows to receive only templates with id less than the specified value."
+										},
+										{
+											"key": "after",
+											"value": "<integer>",
+											"description": "The unique identifier of the template to start the list from. Allows to receive only templates with id greater than the specified value."
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "null"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "submissions",
+			"item": [
+				{
+					"name": "{id}",
+					"item": [
+						{
+							"name": "Get a submission",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "X-Auth-Token",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "{{apiKey}}",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/submissions/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"submissions",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "<integer>",
+											"description": "(Required) The unique identifier of the submission."
+										}
+									]
+								},
+								"description": "The API endpoint provides the functionality to retrieve information about a submission."
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "X-Auth-Token",
+												"value": "<API Key>",
+												"description": "Added as a part of security scheme: apikey"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/submissions/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"submissions",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"example\": {\n    \"id\": 1,\n    \"source\": \"link\",\n    \"submitters_order\": \"random\",\n    \"audit_log_url\": \"https://docuseal.co/blobs/proxy/hash/example.pdf\",\n    \"created_at\": \"2023-12-10T15:48:17.166Z\",\n    \"updated_at\": \"2023-12-10T15:49:21.895Z\",\n    \"submitters\": [\n      {\n        \"id\": 1,\n        \"unid\": \"0954d146-db8c-4772-aafe-2effc7c0e0c0\",\n        \"email\": \"submitter@example.com\",\n        \"slug\": \"dsEeWrhRD8yDXT\",\n        \"sent_at\": \"2023-12-14T15:45:49.011Z\",\n        \"opened_at\": \"2023-12-14T15:48:23.011Z\",\n        \"completed_at\": \"2023-12-14T15:49:21.701Z\",\n        \"created_at\": \"2023-12-14T15:48:17.173Z\",\n        \"updated_at\": \"2023-12-14T15:50:21.799Z\",\n        \"name\": \"John Doe\",\n        \"phone\": \"+1234567890\",\n        \"status\": \"completed\",\n        \"values\": [\n          {\n            \"field\": \"Full Name\",\n            \"value\": \"John Doe\"\n          }\n        ],\n        \"role\": \"First Party\"\n      }\n    ],\n    \"template\": {\n      \"id\": 1,\n      \"name\": \"Example Template\",\n      \"created_at\": \"2023-12-14T15:50:21.799Z\",\n      \"updated_at\": \"2023-12-14T15:50:21.799Z\"\n    },\n    \"submission_events\": [\n      {\n        \"id\": 1,\n        \"submission_id\": 1,\n        \"event_type\": \"view_form\",\n        \"event_timestamp\": \"2023-12-14T15:47:24.566Z\"\n      }\n    ]\n  }\n}"
+								}
+							]
+						},
+						{
+							"name": "Archive a submission",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "X-Auth-Token",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "{{apiKey}}",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/submissions/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"submissions",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "<integer>",
+											"description": "(Required) The unique identifier of the submission."
+										}
+									]
+								},
+								"description": "The API endpoint allows to archive a submission."
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "X-Auth-Token",
+												"value": "<API Key>",
+												"description": "Added as a part of security scheme: apikey"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/submissions/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"submissions",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"example\": {\n    \"id\": 1,\n    \"deleted_at\": \"2023-12-14T15:50:21.799Z\"\n  }\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "emails",
+					"item": [
+						{
+							"name": "Create submissions from emails",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "X-Auth-Token",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "{{apiKey}}",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"template_id\": \"<integer>\",\n  \"emails\": \"<string>\",\n  \"send_email\": true,\n  \"message\": {\n    \"subject\": \"<string>\",\n    \"body\": \"<string>\"\n  }\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/submissions/emails",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"submissions",
+										"emails"
+									]
+								},
+								"description": "This API endpoint allows you to create submissions for a document template and send them to the specified email addresses."
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "X-Auth-Token",
+												"value": "<API Key>",
+												"description": "Added as a part of security scheme: apikey"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"template_id\": \"<integer>\",\n  \"emails\": \"<string>\",\n  \"send_email\": true,\n  \"message\": {\n    \"subject\": \"<string>\",\n    \"body\": \"<string>\"\n  }\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/submissions/emails",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"submissions",
+												"emails"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"example\": [\n    {\n      \"id\": 1,\n      \"submission_id\": 1,\n      \"uuid\": \"884d545b-3396-49f1-8c07-05b8b2a78755\",\n      \"email\": \"john.doe@example.com\",\n      \"slug\": \"KSPqujadAexERL\",\n      \"values\": {},\n      \"ua\": \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15\",\n      \"ip\": \"171.181.194.186\",\n      \"sent_at\": \"2023-12-14T15:50:21.799Z\",\n      \"created_at\": \"2023-12-14T15:50:21.799Z\",\n      \"updated_at\": \"2023-12-14T15:50:21.799Z\",\n      \"preferences\": {\n        \"send_email\": true,\n        \"send_sms\": false\n      }\n    },\n    {\n      \"id\": 2,\n      \"submission_id\": 2,\n      \"uuid\": \"884d545b-3396-49f1-8c07-05b8b2a78755\",\n      \"email\": \"alan.smith@example.com\",\n      \"slug\": \"SEwc65vHNDH3QS\",\n      \"values\": {},\n      \"ua\": \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15\",\n      \"ip\": \"168.182.103.8\",\n      \"sent_at\": \"2023-12-14T15:50:21.799Z\",\n      \"created_at\": \"2023-12-14T15:50:21.799Z\",\n      \"updated_at\": \"2023-12-14T15:50:21.799Z\",\n      \"preferences\": {\n        \"send_email\": true,\n        \"send_sms\": false\n      }\n    }\n  ]\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "List all submissions",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "X-Auth-Token",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{apiKey}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/submissions?template_id=<integer>&application_key=<string>&template_folder=<string>&limit=<integer>&before=<integer>&after=<integer>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"submissions"
+							],
+							"query": [
+								{
+									"key": "template_id",
+									"value": "<integer>",
+									"description": "The unique identifier of the document template. Allows to receive only submissions for a specific template."
+								},
+								{
+									"key": "application_key",
+									"value": "<string>",
+									"description": "Filter submissions by the given `application_key` value."
+								},
+								{
+									"key": "template_folder",
+									"value": "<string>",
+									"description": "Filter submissions by template folder name."
+								},
+								{
+									"key": "limit",
+									"value": "<integer>",
+									"description": "The number of submissions to return. Default value is 10. Maximum value is 100."
+								},
+								{
+									"key": "before",
+									"value": "<integer>",
+									"description": "The unique identifier of the submission to end the list with. Allows to receive only submissions with id less than the specified value."
+								},
+								{
+									"key": "after",
+									"value": "<integer>",
+									"description": "The unique identifier of the submission to start the list from. Allows to receive only submissions with id greater than the specified value."
+								}
+							]
+						},
+						"description": "The API endpoint provides the ability to retrieve a list of available submissions."
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "X-Auth-Token",
+										"value": "<API Key>",
+										"description": "Added as a part of security scheme: apikey"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/submissions?template_id=<integer>&application_key=<string>&template_folder=<string>&limit=<integer>&before=<integer>&after=<integer>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"submissions"
+									],
+									"query": [
+										{
+											"key": "template_id",
+											"value": "<integer>",
+											"description": "The unique identifier of the document template. Allows to receive only submissions for a specific template."
+										},
+										{
+											"key": "application_key",
+											"value": "<string>",
+											"description": "Filter submissions by the given `application_key` value."
+										},
+										{
+											"key": "template_folder",
+											"value": "<string>",
+											"description": "Filter submissions by template folder name."
+										},
+										{
+											"key": "limit",
+											"value": "<integer>",
+											"description": "The number of submissions to return. Default value is 10. Maximum value is 100."
+										},
+										{
+											"key": "before",
+											"value": "<integer>",
+											"description": "The unique identifier of the submission to end the list with. Allows to receive only submissions with id less than the specified value."
+										},
+										{
+											"key": "after",
+											"value": "<integer>",
+											"description": "The unique identifier of the submission to start the list from. Allows to receive only submissions with id greater than the specified value."
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"example\": {\n    \"data\": [\n      {\n        \"id\": 1,\n        \"source\": \"link\",\n        \"submitters_order\": \"random\",\n        \"audit_log_url\": \"https://docuseal.co/blobs/proxy/hash/example.pdf\",\n        \"created_at\": \"2023-12-10T15:48:17.166Z\",\n        \"updated_at\": \"2023-12-10T15:49:21.895Z\",\n        \"submitters\": [\n          {\n            \"id\": 1,\n            \"unid\": \"0954d146-db8c-4772-aafe-2effc7c0e0c0\",\n            \"email\": \"submitter@example.com\",\n            \"slug\": \"dsEeWrhRD8yDXT\",\n            \"sent_at\": \"2023-12-14T15:45:49.011Z\",\n            \"opened_at\": \"2023-12-14T15:48:23.011Z\",\n            \"completed_at\": \"2023-12-14T15:49:21.701Z\",\n            \"created_at\": \"2023-12-10T15:48:17.173Z\",\n            \"updated_at\": \"2023-12-14T15:50:21.799Z\",\n            \"name\": \"John Doe\",\n            \"phone\": \"+1234567890\",\n            \"status\": \"completed\"\n          }\n        ],\n        \"template\": {\n          \"id\": 1,\n          \"name\": \"Example Template\",\n          \"created_at\": \"2023-12-14T15:50:21.799Z\",\n          \"updated_at\": \"2023-12-14T15:50:21.799Z\"\n        }\n      }\n    ]\n  }\n}"
+						}
+					]
+				},
+				{
+					"name": "Create a submission",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "X-Auth-Token",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{apiKey}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"template_id\": \"<integer>\",\n  \"submission\": [\n    {\n      \"submitters\": [\n        {\n          \"email\": \"<email>\",\n          \"name\": \"<string>\",\n          \"role\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"values\": {},\n          \"application_key\": \"<string>\",\n          \"send_email\": true,\n          \"send_sms\": false,\n          \"fields\": [\n            {\n              \"name\": \"<string>\",\n              \"default_value\": \"<string>\",\n              \"validation_pattern\": \"<string>\",\n              \"invalid_message\": \"<string>\",\n              \"readonly\": false\n            },\n            {\n              \"name\": \"<string>\",\n              \"default_value\": \"<string>\",\n              \"validation_pattern\": \"<string>\",\n              \"invalid_message\": \"<string>\",\n              \"readonly\": false\n            }\n          ]\n        },\n        {\n          \"email\": \"<email>\",\n          \"name\": \"<string>\",\n          \"role\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"values\": {},\n          \"application_key\": \"<string>\",\n          \"send_email\": true,\n          \"send_sms\": false,\n          \"fields\": [\n            {\n              \"name\": \"<string>\",\n              \"default_value\": \"<string>\",\n              \"validation_pattern\": \"<string>\",\n              \"invalid_message\": \"<string>\",\n              \"readonly\": false\n            },\n            {\n              \"name\": \"<string>\",\n              \"default_value\": \"<string>\",\n              \"validation_pattern\": \"<string>\",\n              \"invalid_message\": \"<string>\",\n              \"readonly\": false\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"submitters\": [\n        {\n          \"email\": \"<email>\",\n          \"name\": \"<string>\",\n          \"role\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"values\": {},\n          \"application_key\": \"<string>\",\n          \"send_email\": true,\n          \"send_sms\": false,\n          \"fields\": [\n            {\n              \"name\": \"<string>\",\n              \"default_value\": \"<string>\",\n              \"validation_pattern\": \"<string>\",\n              \"invalid_message\": \"<string>\",\n              \"readonly\": false\n            },\n            {\n              \"name\": \"<string>\",\n              \"default_value\": \"<string>\",\n              \"validation_pattern\": \"<string>\",\n              \"invalid_message\": \"<string>\",\n              \"readonly\": false\n            }\n          ]\n        },\n        {\n          \"email\": \"<email>\",\n          \"name\": \"<string>\",\n          \"role\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"values\": {},\n          \"application_key\": \"<string>\",\n          \"send_email\": true,\n          \"send_sms\": false,\n          \"fields\": [\n            {\n              \"name\": \"<string>\",\n              \"default_value\": \"<string>\",\n              \"validation_pattern\": \"<string>\",\n              \"invalid_message\": \"<string>\",\n              \"readonly\": false\n            },\n            {\n              \"name\": \"<string>\",\n              \"default_value\": \"<string>\",\n              \"validation_pattern\": \"<string>\",\n              \"invalid_message\": \"<string>\",\n              \"readonly\": false\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"send_email\": true,\n  \"send_sms\": false,\n  \"order\": \"preserved\",\n  \"message\": {\n    \"subject\": \"<string>\",\n    \"body\": \"<string>\"\n  }\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/submissions",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"submissions"
+							]
+						},
+						"description": "This API endpoint allows you to create submissions for a document template and send them to the specified submitters"
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "X-Auth-Token",
+										"value": "<API Key>",
+										"description": "Added as a part of security scheme: apikey"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"template_id\": \"<integer>\",\n  \"submission\": [\n    {\n      \"submitters\": [\n        {\n          \"email\": \"<email>\",\n          \"name\": \"<string>\",\n          \"role\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"values\": {},\n          \"application_key\": \"<string>\",\n          \"send_email\": true,\n          \"send_sms\": false,\n          \"fields\": [\n            {\n              \"name\": \"<string>\",\n              \"default_value\": \"<string>\",\n              \"validation_pattern\": \"<string>\",\n              \"invalid_message\": \"<string>\",\n              \"readonly\": false\n            },\n            {\n              \"name\": \"<string>\",\n              \"default_value\": \"<string>\",\n              \"validation_pattern\": \"<string>\",\n              \"invalid_message\": \"<string>\",\n              \"readonly\": false\n            }\n          ]\n        },\n        {\n          \"email\": \"<email>\",\n          \"name\": \"<string>\",\n          \"role\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"values\": {},\n          \"application_key\": \"<string>\",\n          \"send_email\": true,\n          \"send_sms\": false,\n          \"fields\": [\n            {\n              \"name\": \"<string>\",\n              \"default_value\": \"<string>\",\n              \"validation_pattern\": \"<string>\",\n              \"invalid_message\": \"<string>\",\n              \"readonly\": false\n            },\n            {\n              \"name\": \"<string>\",\n              \"default_value\": \"<string>\",\n              \"validation_pattern\": \"<string>\",\n              \"invalid_message\": \"<string>\",\n              \"readonly\": false\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"submitters\": [\n        {\n          \"email\": \"<email>\",\n          \"name\": \"<string>\",\n          \"role\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"values\": {},\n          \"application_key\": \"<string>\",\n          \"send_email\": true,\n          \"send_sms\": false,\n          \"fields\": [\n            {\n              \"name\": \"<string>\",\n              \"default_value\": \"<string>\",\n              \"validation_pattern\": \"<string>\",\n              \"invalid_message\": \"<string>\",\n              \"readonly\": false\n            },\n            {\n              \"name\": \"<string>\",\n              \"default_value\": \"<string>\",\n              \"validation_pattern\": \"<string>\",\n              \"invalid_message\": \"<string>\",\n              \"readonly\": false\n            }\n          ]\n        },\n        {\n          \"email\": \"<email>\",\n          \"name\": \"<string>\",\n          \"role\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"values\": {},\n          \"application_key\": \"<string>\",\n          \"send_email\": true,\n          \"send_sms\": false,\n          \"fields\": [\n            {\n              \"name\": \"<string>\",\n              \"default_value\": \"<string>\",\n              \"validation_pattern\": \"<string>\",\n              \"invalid_message\": \"<string>\",\n              \"readonly\": false\n            },\n            {\n              \"name\": \"<string>\",\n              \"default_value\": \"<string>\",\n              \"validation_pattern\": \"<string>\",\n              \"invalid_message\": \"<string>\",\n              \"readonly\": false\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"send_email\": true,\n  \"send_sms\": false,\n  \"order\": \"preserved\",\n  \"message\": {\n    \"subject\": \"<string>\",\n    \"body\": \"<string>\"\n  }\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/submissions",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"submissions"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"example\": [\n    {\n      \"id\": 1,\n      \"submission_id\": 1,\n      \"uuid\": \"884d545b-3396-49f1-8c07-05b8b2a78755\",\n      \"email\": \"john.doe@example.com\",\n      \"slug\": \"pAMimKcyrLjqVt\",\n      \"values\": {\n        \"20554a4d-dd0b-4ea0-961d-8cccd2f985a7\": \"John Doe\"\n      },\n      \"ua\": \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15\",\n      \"ip\": \"171.181.194.186\",\n      \"sent_at\": \"2023-12-13T23:04:04.252Z\",\n      \"created_at\": \"2023-12-14T15:50:21.799Z\",\n      \"updated_at\": \"2023-12-14T15:50:21.799Z\",\n      \"name\": \"string\",\n      \"phone\": \"+1234567890\",\n      \"application_key\": \"2321\",\n      \"preferences\": {\n        \"send_email\": true,\n        \"send_sms\": false\n      }\n    }\n  ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "submitters",
+			"item": [
+				{
+					"name": "{id}",
+					"item": [
+						{
+							"name": "Get a submitter",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "X-Auth-Token",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "{{apiKey}}",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/submitters/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"submitters",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "<integer>",
+											"description": "(Required) The unique identifier of the submitter."
+										}
+									]
+								},
+								"description": "The API endpoint provides the functionality to retrieve information about a submitter."
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "X-Auth-Token",
+												"value": "<API Key>",
+												"description": "Added as a part of security scheme: apikey"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/submitters/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"submitters",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"example\": {\n    \"id\": 7,\n    \"uuid\": \"0954d146-db8c-4772-aafe-2effc7c0e0c0\",\n    \"email\": \"submitter@example.com\",\n    \"slug\": \"dsEeWrhRD8yDXT\",\n    \"sent_at\": \"2023-12-14T15:45:49.011Z\",\n    \"opened_at\": \"2023-12-14T15:48:23.011Z\",\n    \"completed_at\": \"2023-12-10T15:49:21.701Z\",\n    \"created_at\": \"2023-12-14T15:48:17.173Z\",\n    \"updated_at\": \"2023-12-14T15:50:21.799Z\",\n    \"name\": \"John Doe\",\n    \"phone\": \"+1234567890\",\n    \"template\": {\n      \"id\": 2,\n      \"name\": \"Example Template\",\n      \"created_at\": \"2023-12-14T15:50:21.799Z\",\n      \"updated_at\": \"2023-12-14T15:50:21.799Z\"\n    },\n    \"submission_events\": [\n      {\n        \"id\": 12,\n        \"submitter_id\": 7,\n        \"event_type\": \"view_form\",\n        \"event_timestamp\": \"2023-12-14T15:47:17.351Z\"\n      }\n    ],\n    \"values\": [\n      {\n        \"field\": \"Full Name\",\n        \"value\": \"John Doe\"\n      }\n    ],\n    \"documents\": [\n      {\n        \"name\": \"sample-document\",\n        \"url\": \"https://www.docuseal.co/blobs/proxy/hash/sample-document.pdf\"\n      }\n    ],\n    \"role\": \"First Party\"\n  }\n}"
+								}
+							]
+						},
+						{
+							"name": "Update a submitter",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "key",
+											"value": "X-Auth-Token",
+											"type": "string"
+										},
+										{
+											"key": "value",
+											"value": "{{apiKey}}",
+											"type": "string"
+										},
+										{
+											"key": "in",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone\": \"<string>\",\n  \"values\": {},\n  \"application_key\": \"<string>\",\n  \"send_email\": null,\n  \"send_sms\": false,\n  \"message\": {\n    \"subject\": \"<string>\",\n    \"body\": \"<string>\"\n  },\n  \"fields\": [\n    {\n      \"name\": \"<string>\",\n      \"default_value\": \"<string>\",\n      \"validation_pattern\": \"<string>\",\n      \"invalid_message\": \"<string>\",\n      \"readonly\": false\n    },\n    {\n      \"name\": \"<string>\",\n      \"default_value\": \"<string>\",\n      \"validation_pattern\": \"<string>\",\n      \"invalid_message\": \"<string>\",\n      \"readonly\": false\n    }\n  ]\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/submitters/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"submitters",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "<integer>",
+											"description": "(Required) The unique identifier of the submitter."
+										}
+									]
+								},
+								"description": "The API endpoint provides allows to update submitter details, field values and re-send emails."
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "X-Auth-Token",
+												"value": "<API Key>",
+												"description": "Added as a part of security scheme: apikey"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone\": \"<string>\",\n  \"values\": {},\n  \"application_key\": \"<string>\",\n  \"send_email\": null,\n  \"send_sms\": false,\n  \"message\": {\n    \"subject\": \"<string>\",\n    \"body\": \"<string>\"\n  },\n  \"fields\": [\n    {\n      \"name\": \"<string>\",\n      \"default_value\": \"<string>\",\n      \"validation_pattern\": \"<string>\",\n      \"invalid_message\": \"<string>\",\n      \"readonly\": false\n    },\n    {\n      \"name\": \"<string>\",\n      \"default_value\": \"<string>\",\n      \"validation_pattern\": \"<string>\",\n      \"invalid_message\": \"<string>\",\n      \"readonly\": false\n    }\n  ]\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/submitters/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"submitters",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"example\": {\n    \"id\": 1,\n    \"uuid\": \"0954d146-db8c-4772-aafe-2effc7c0e0c0\",\n    \"email\": \"submitter@example.com\",\n    \"slug\": \"dsEeWrhRD8yDXT\",\n    \"sent_at\": \"2023-12-14T15:45:49.011Z\",\n    \"opened_at\": \"2023-12-14T15:48:23.011Z\",\n    \"completed_at\": \"2023-12-10T15:49:21.701Z\",\n    \"created_at\": \"2023-12-14T15:48:17.173Z\",\n    \"updated_at\": \"2023-12-14T15:50:21.799Z\",\n    \"name\": \"John Doe\",\n    \"phone\": \"+1234567890\",\n    \"values\": [\n      {\n        \"field\": \"Full Name\",\n        \"value\": \"John Doe\"\n      }\n    ],\n    \"documents\": [],\n    \"role\": \"First Party\"\n  }\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "List all submitters",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "X-Auth-Token",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{apiKey}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/submitters?submission_id=<integer>&application_key=<string>&limit=<integer>&before=<integer>&after=<integer>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"submitters"
+							],
+							"query": [
+								{
+									"key": "submission_id",
+									"value": "<integer>",
+									"description": "The unique identifier of the submission. Allows to receive only submitters for a submission."
+								},
+								{
+									"key": "application_key",
+									"value": "<string>",
+									"description": "The unique applications-specific identifier provided for a submitter when initializing a signature request. Allows to receive only submitters with a specified application key."
+								},
+								{
+									"key": "limit",
+									"value": "<integer>",
+									"description": "The number of submitters to return. Default value is 10. Maximum value is 100."
+								},
+								{
+									"key": "before",
+									"value": "<integer>",
+									"description": "The unique identifier of the submitter to end the list with. Allows to receive only submitters with id less than the specified value."
+								},
+								{
+									"key": "after",
+									"value": "<integer>",
+									"description": "The unique identifier of the submitter to start the list from. Allows to receive only submitters with id greater than the specified value."
+								}
+							]
+						},
+						"description": "The API endpoint provides the ability to retrieve a list of submitters."
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "X-Auth-Token",
+										"value": "<API Key>",
+										"description": "Added as a part of security scheme: apikey"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/submitters?submission_id=<integer>&application_key=<string>&limit=<integer>&before=<integer>&after=<integer>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"submitters"
+									],
+									"query": [
+										{
+											"key": "submission_id",
+											"value": "<integer>",
+											"description": "The unique identifier of the submission. Allows to receive only submitters for a submission."
+										},
+										{
+											"key": "application_key",
+											"value": "<string>",
+											"description": "The unique applications-specific identifier provided for a submitter when initializing a signature request. Allows to receive only submitters with a specified application key."
+										},
+										{
+											"key": "limit",
+											"value": "<integer>",
+											"description": "The number of submitters to return. Default value is 10. Maximum value is 100."
+										},
+										{
+											"key": "before",
+											"value": "<integer>",
+											"description": "The unique identifier of the submitter to end the list with. Allows to receive only submitters with id less than the specified value."
+										},
+										{
+											"key": "after",
+											"value": "<integer>",
+											"description": "The unique identifier of the submitter to start the list from. Allows to receive only submitters with id greater than the specified value."
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"example\": {\n    \"data\": [\n      {\n        \"id\": 7,\n        \"uuid\": \"0954d146-db8c-4772-aafe-2effc7c0e0c0\",\n        \"email\": \"submitter@example.com\",\n        \"slug\": \"dsEeWrhRD8yDXT\",\n        \"sent_at\": \"2023-12-14T15:45:49.011Z\",\n        \"opened_at\": \"2023-12-14T15:48:23.011Z\",\n        \"completed_at\": \"2023-12-14T15:49:21.701Z\",\n        \"created_at\": \"2023-12-14T15:48:17.173Z\",\n        \"updated_at\": \"2023-12-14T15:50:21.799Z\",\n        \"name\": \"John Doe\",\n        \"phone\": \"+1234567890\",\n        \"template\": {\n          \"id\": 2,\n          \"name\": \"Example Template\",\n          \"created_at\": \"2023-12-14T15:50:21.799Z\",\n          \"updated_at\": \"2023-12-14T15:50:21.799Z\"\n        },\n        \"submission_events\": [\n          {\n            \"id\": 12,\n            \"submitter_id\": 7,\n            \"event_type\": \"view_form\",\n            \"event_timestamp\": \"2023-12-14T15:48:17.351Z\"\n          }\n        ],\n        \"values\": {\n          \"field\": \"Full Name\",\n          \"value\": \"John Doe\"\n        },\n        \"documents\": [\n          {\n            \"name\": \"sample-document\",\n            \"url\": \"http://localhost/blobs/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--f9758362acced0711f45328f3c86cdffad02800e/sample-document.pdf\"\n          }\n        ],\n        \"role\": \"First Party\"\n      }\n    ],\n    \"pagination\": {\n      \"count\": 1,\n      \"next\": 1,\n      \"prev\": 1\n    }\n  }\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "apikey"
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://api.docuseal.co"
+		}
+	]
+}
