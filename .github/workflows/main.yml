@@ -33,7 +33,7 @@ jobs:
       - name: Import Collection to Postman
         env:
           POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
-          COLLECTION_FILE: collections/my_collection.json  # Adjust if needed
+          COLLECTION_FILE: collections/API/DocuSeal.json  # Adjust if needed
           COLLECTION_UID: ${{ env.COLLECTION_UID }}
         run: |
           curl --location --request PUT "https://api.getpostman.com/collections/$COLLECTION_UID" \
