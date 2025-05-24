@@ -13,9 +13,6 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v3
 
-      - name: Set Collection Name
-        run: echo "COLLECTION_NAME=My Collection" >> $GITHUB_ENV  # Replace with your actual name
-
       - name: Get Collection UID from Postman
         id: get_uid
         env:
