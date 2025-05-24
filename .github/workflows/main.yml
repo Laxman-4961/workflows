@@ -2,8 +2,8 @@ name: Import Postman Collection
 
 on:
   push:
-    paths:
-      - "API/*.json"  # Adjust path as needed
+    branches:
+      - main
 
 jobs:
   import_collection:
