@@ -16,7 +16,7 @@ jobs:
     - name: Import Collection to Postman
       env:
         POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
-        COLLECTION_FILE: collections/my_collection.json  # Adjust as needed
+        COLLECTION_FILE: API/DocuSeal.json  # Adjust as needed
         COLLECTION_UID: 40464893-4b84127a-0d19-42d4-92f1-418b70cdafae
 
       run: |
