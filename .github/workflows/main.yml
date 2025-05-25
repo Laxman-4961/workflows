@@ -1,6 +1,4 @@
-# File: .github/workflows/import-postman-collection.yml
-
-name: Import Collection to Postman
+name: Import Postman Collection
 
 on:
   push:
@@ -8,26 +6,21 @@ on:
       - main
 
 jobs:
-  import-collection:
+  import_collection:
     runs-on: ubuntu-latest
-    env:
-      POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
-      COLLECTION_FILE: API/DocuSeal.json
-      COLLECTION_UID: 40464893-4b84127a-0d19-42d4-92f1-418b70cdafae # Replace this with your real UID
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+    - name: Checkout Repo
+      uses: actions/checkout@v3
 
-      - name: Install jq
-        run: sudo apt-get update && sudo apt-get install -y jq
+    - name: Import Collection to Postman
+      env:
+        POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
+        COLLECTION_FILE: collections/my_collection.json  # Adjust as needed
+        COLLECTION_UID: 40464893-4b84127a-0d19-42d4-92f1-418b70cdafae
 
-      - name: Import Postman collection
-        run: |
-          WRAPPED_FILE=$(mktemp)
-         jq -n --argjson collection "$(cat "$COLLECTION_FILE")" '{collection: $collection}' > "$WRAPPED_FILE"
-          
-          curl --location --request PUT "https://api.getpostman.com/collections/$COLLECTION_UID" \
-            --header "X-Api-Key: $POSTMAN_API_KEY" \
-            --header "Content-Type: application/json" \
-            --data @"$WRAPPED_FILE"
+      run: |
+        curl --location --request PUT "https://api.getpostman.com/collections/$COLLECTION_UID" \
+        --header "X-Api-Key: $POSTMAN_API_KEY" \
+        --header "Content-Type: application/json" \
+        --data "@$COLLECTION_FILE"
