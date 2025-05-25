@@ -1,18 +1,18 @@
 {
   "collection": {
     "info": {
-      "_postman_id": "54d9c9ce-7f4f-4ae9-99d3-84b20f93cc42",
+      "_postman_id": "ac038a87-7239-4965-a6ca-273285d34f08",
       "name": "ServiceNow DEV - Import to IBM",
       "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-      "updatedAt": "2025-05-25T03:11:51.000Z",
-      "createdAt": "2025-05-25T03:11:50.000Z",
+      "updatedAt": "2025-05-25T04:49:28.000Z",
+      "createdAt": "2025-05-25T04:49:28.000Z",
       "lastUpdatedBy": "40464893",
-      "uid": "40464893-54d9c9ce-7f4f-4ae9-99d3-84b20f93cc42"
+      "uid": "40464893-ac038a87-7239-4965-a6ca-273285d34f08"
     },
     "item": [
       {
         "name": "New Request",
-        "id": "294d7b28-b1cc-41cc-a147-e1d9215d015a",
+        "id": "2658d289-3c15-46ea-89cb-3804c2b04c30",
         "request": {
           "auth": {
             "type": "basic",
@@ -58,7 +58,7 @@
           }
         },
         "response": [],
-        "uid": "40464893-294d7b28-b1cc-41cc-a147-e1d9215d015a"
+        "uid": "40464893-2658d289-3c15-46ea-89cb-3804c2b04c30"
       }
     ]
   },
