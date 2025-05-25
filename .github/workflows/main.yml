@@ -42,11 +42,11 @@ jobs:
 
         echo "✅ Successfully imported collection. id: $COLLECTION_ID"
         echo "COLLECTION_ID=$COLLECTION_ID" >> $GITHUB_ENV
-        - name: Fetch OpenAPI 3.x JSON from Postman
-        id: fetch_openapi
+       - name: Fetch OpenAPI 3.x JSON from Postman
+         id: fetch_openapi
         run: |
           echo "Fetching OpenAPI JSON for collection $COLLECTION_ID"
           curl --silent --location --request GET "https://api.getpostman.com/collections/$COLLECTION_ID/transformations" \
             --header "Content-Type: application/json" \
-            --header "x-api-key: $APIKEY" \
+            --header "x-api-key: $POSTMAN_API_KEY" \
             | jq -r '.output' > postman-openapi-$COLLECTION_ID.json
