@@ -98,3 +98,5 @@ jobs:
         }' apic-friendly-secure.json > apic-friendly-secure-import.json
 
         echo "✅ Patched OpenAPI file ready: apic-friendly-secure-import.json"
+        echo "📄 Printing apic-friendly-secure-import.json content:"
+        cat apic-friendly-secure-import.json | jq .
