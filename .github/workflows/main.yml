@@ -32,7 +32,7 @@ jobs:
           --data @"$WRAPPED_FILE")
 
         echo "Response: $response"
-        COLLECTION_ID=$(echo "$response" | jq -r '.collection.uid')
+        COLLECTION_ID=$(echo "$response" | jq -r '.collection.id')
 
         if [ -z "$COLLECTION_ID" ] || [ "$COLLECTION_ID" == "null" ]; then
           echo "❌ Failed to import collection. Full response:"
@@ -40,5 +40,5 @@ jobs:
           exit 1
         fi
 
-        echo "✅ Successfully imported collection. UID: $COLLECTION_ID"
+        echo "✅ Successfully imported collection. id: $COLLECTION_ID"
         echo "COLLECTION_ID=$COLLECTION_ID" >> $GITHUB_ENV
