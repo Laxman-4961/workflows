@@ -37,5 +37,4 @@ jobs:
             exit 1
           fi
 
-          echo "Imported collection: $COLLECTION_NAME with ID $COLLECTION_ID"
           echo "COLLECTION_ID=$COLLECTION_ID" >> $GITHUB_ENV
