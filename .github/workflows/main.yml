@@ -100,3 +100,7 @@ jobs:
         echo "✅ Patched OpenAPI file ready: apic-friendly-secure-import.json"
         echo "📄 Printing apic-friendly-secure-import.json content:"
         cat apic-friendly-secure-import.json | jq .
+
+    - name: Commit patched OpenAPI file to repo
+      run: |
+        git config --glo
