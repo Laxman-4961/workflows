@@ -21,9 +21,11 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y jq
 
       - name: Import Postman collection
-        run: |
-          WRAPPED_FILE=$(mktemp)
-          jq -n --argjson collection @"$COLLECTION_FILE" '{collection: $collection}' > "$WRAPPED_FILE"
+       - name: Wrap collection JSON
+  run: |
+    WRAPPED_FILE=$(mktemp)
+    jq -n --argjson collection "$(cat "$COLLECTION_FILE")" '{collection: $collection}' > "$WRAPPED_FILE"
+
           
           curl --location --request PUT "https://api.getpostman.com/collections/$COLLECTION_UID" \
             --header "X-Api-Key: $POSTMAN_API_KEY" \
