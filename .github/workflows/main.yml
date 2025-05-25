@@ -11,7 +11,7 @@ jobs:
     env:
       POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
       COLLECTION_FILE: API/DocuSeal.json
-      COLLECTION_UID: your-postman-collection-uid  # Replace this with your real UID
+      COLLECTION_UID: 40464893-4b84127a-0d19-42d4-92f1-418b70cdafae  # Replace this with your real UID
 
     steps:
       - name: Checkout repository
