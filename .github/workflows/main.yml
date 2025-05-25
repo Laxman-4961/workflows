@@ -32,21 +32,23 @@ jobs:
           --data @"$WRAPPED_FILE")
 
         echo "Response: $response"
-        COLLECTION_ID=$(echo "$response" | jq -r '.collection.id')
+        COLLECTION_UID=$(echo "$response" | jq -r '.collection.uid')
 
-        if [ -z "$COLLECTION_ID" ] || [ "$COLLECTION_ID" == "null" ]; then
+        if [ -z "$COLLECTION_UID" ] || [ "$COLLECTION_UID" == "null" ]; then
           echo "❌ Failed to import collection. Full response:"
           echo "$response"
           exit 1
         fi
 
-        echo "✅ Successfully imported collection. id: $COLLECTION_ID"
-        echo "COLLECTION_ID=$COLLECTION_ID" >> $GITHUB_ENV
-       - name: Fetch OpenAPI 3.x JSON from Postman
-         id: fetch_openapi
-        run: |
-          echo "Fetching OpenAPI JSON for collection $COLLECTION_ID"
-          curl --silent --location --request GET "https://api.getpostman.com/collections/$COLLECTION_ID/transformations" \
-            --header "Content-Type: application/json" \
-            --header "x-api-key: $POSTMAN_API_KEY" \
-            | jq -r '.output' > postman-openapi-$COLLECTION_ID.json
+        echo "✅ Successfully imported collection. UID: $COLLECTION_UID"
+        echo "COLLECTION_UID=$COLLECTION_UID" >> $GITHUB_ENV
+
+    - name: Fetch Collection JSON from Postman
+      env:
+        POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
+      run: |
+        echo "Fetching collection JSON for $COLLECTION_UID"
+        curl --silent --location --request GET "https://api.getpostman.com/collections/$COLLECTION_UID" \
+          --header "X-Api-Key: $POSTMAN_API_KEY" \
+          --header "Content-Type: application/json" \
+          | jq . > postman-collection-$COLLECTION_UID.json
