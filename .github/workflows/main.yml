@@ -26,7 +26,7 @@ jobs:
         WRAPPED_FILE=$(mktemp)
         jq -n --argjson collection "$(cat "$COLLECTION_FILE")" '{collection: $collection}' > "$WRAPPED_FILE"
 
-        curl --location --request PUT "https://api.getpostman.com/collections/$COLLECTION_UID" \
+        curl --location --request POST "https://api.getpostman.com/collections" \
         --header "X-Api-Key: $POSTMAN_API_KEY" \
         --header "Content-Type: application/json" \
         --data @"$WRAPPED_FILE"
