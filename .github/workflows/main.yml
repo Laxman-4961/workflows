@@ -103,8 +103,8 @@ jobs:
 
     - name: Commit patched OpenAPI file to repo
       run: |
-        git config --global user.name "github-actions[bot]"
-        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git config --global user.name "laxman"
+        git config --global user.email "lvadapalli@miraclesoft.com"
 
         # Move the file into API/ directory (adjust if needed)
         mv apic-friendly-secure-import.json API/apic-friendly-secure-import.json
