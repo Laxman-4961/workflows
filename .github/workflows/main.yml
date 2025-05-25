@@ -16,25 +16,29 @@ jobs:
     - name: Install jq
       run: sudo apt-get update && sudo apt-get install -y jq
 
-    - name: Import Collection to Postman
+    - name: Import Collection to Postman (Create New)
       env:
         POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
         COLLECTION_FILE: API/DocuSeal.json
-        COLLECTION_UID: 40464893-4b84127a-0d19-42d4-92f1-418b70cdafae
 
       run: |
         WRAPPED_FILE=$(mktemp)
         jq -n --argjson collection "$(cat "$COLLECTION_FILE")" '{collection: $collection}' > "$WRAPPED_FILE"
 
-       response=$(curl --location --request POST "https://api.getpostman.com/collections" \
-        --header "X-Api-Key: $POSTMAN_API_KEY" \
-        --header "Content-Type: application/json" \
-        --data @"$WRAPPED_FILE")
-          COLLECTION_ID=$(echo "$response" | jq -r '.collection.id')
+        echo "Sending collection to Postman..."
+        response=$(curl --location --request POST "https://api.getpostman.com/collections" \
+          --header "X-Api-Key: $POSTMAN_API_KEY" \
+          --header "Content-Type: application/json" \
+          --data @"$WRAPPED_FILE")
 
-          if [ -z "$COLLECTION_ID" ] || [ "$COLLECTION_ID" == "null" ]; then
-            echo "Failed to import collection. Response: $response"
-            exit 1
-          fi
+        echo "Response: $response"
+        COLLECTION_ID=$(echo "$response" | jq -r '.collection.uid')
 
-          echo "COLLECTION_ID=$COLLECTION_ID" >> $GITHUB_ENV
+        if [ -z "$COLLECTION_ID" ] || [ "$COLLECTION_ID" == "null" ]; then
+          echo "❌ Failed to import collection. Full response:"
+          echo "$response"
+          exit 1
+        fi
+
+        echo "✅ Successfully imported collection. UID: $COLLECTION_ID"
+        echo "COLLECTION_ID=$COLLECTION_ID" >> $GITHUB_ENV
