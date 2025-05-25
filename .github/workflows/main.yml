@@ -29,7 +29,7 @@ jobs:
         response=$(curl --location --request POST "https://api.getpostman.com/collections" \
           --header "X-Api-Key: $POSTMAN_API_KEY" \
           --header "Content-Type: application/json" \
-          --data @"$WRAPPED_FILE")
+          --data @"$COLLECTION_FILE")
 
         echo "Response: $response"
         COLLECTION_UID=$(echo "$response" | jq -r '.collection.uid')
