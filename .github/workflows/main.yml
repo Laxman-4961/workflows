@@ -103,4 +103,20 @@ jobs:
 
     - name: Commit patched OpenAPI file to repo
       run: |
-        git config --glo
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+        # Move the file into API/ directory (adjust if needed)
+        mv apic-friendly-secure-import.json API/apic-friendly-secure-import.json
+
+        git pull origin main
+        git add API/apic-friendly-secure-import.json
+
+        if ! git diff --cached --quiet; then
+          git commit -m "Add/Update patched OpenAPI file from GitHub Actions"
+          git push origin main
+        else
+          echo "No changes to commit."
+        fi
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
