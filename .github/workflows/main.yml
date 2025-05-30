@@ -118,7 +118,7 @@ jobs:
           echo " apic-friendly-secure.json"
           cat apic-friendly-secure.json
           echo " apic-friendly-secure-import.json"
-          cat apic-friendly-secure-import.json
+          cat apic-friendly-secure-import.json <<EOF
 
       - name: Commit patched OpenAPI file to repo
         run: |
