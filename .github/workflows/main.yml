@@ -14,7 +14,7 @@ jobs:
   convert-postman:
     runs-on: ubuntu-latest
     env:
-      APIKEY: ${{ secrets.POSTMAN_APIKEY }}
+      APIKEY: ${{ secrets.POSTMAN_API_KEY }}
 
     steps:
       - name: Checkout repo
@@ -22,12 +22,39 @@ jobs:
 
       - name: Install jq
         run: sudo apt-get update && sudo apt-get install -y jq
+      
+      - name: Import Collection to Postman (Create New)
+      env:
+        POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
+        COLLECTION_FILE: API/DocuSeal.json
+
+      run: |
+        WRAPPED_FILE=$(mktemp)
+        jq -n --argjson collection "$(cat "$COLLECTION_FILE")" '{collection: $collection}' > "$WRAPPED_FILE"
+
+        echo "Sending collection to Postman..."
+        response=$(curl --location --request POST "https://api.getpostman.com/collections" \
+          --header "X-Api-Key: $POSTMAN_API_KEY" \
+          --header "Content-Type: application/json" \
+          --data @"$WRAPPED_FILE")
+
+        echo "Response: $response"
+        COLLECTION_UID=$(echo "$response" | jq -r '.collection.id')
+
+        if [ -z "$COLLECTION_UID" ] || [ "$COLLECTION_UID" == "null" ]; then
+          echo "❌ Failed to import collection. Full response:"
+          echo "$response"
+          exit 1
+        fi
+
+        echo "✅ Successfully imported collection. UID: $COLLECTION_UID"
+        echo "COLLECTION_UID=$COLLECTION_UID" >> $GITHUB_ENV
 
       - name: Run conversion script
         id: convert
         shell: bash
         run: |
-          COLLECTIONID="${{ github.event.inputs.collection_id }}"
+          COLLECTIONID=${{ env.COLLECTION_UID }}
           
           if [ -z "$APIKEY" ] || [ "$APIKEY" == "FILL-ME-IN-WITH-YOUR-POSTMAN-APIKEY" ]; then
             echo "ERROR: Please set your POSTMAN APIKEY as a secret named POSTMAN_APIKEY."
