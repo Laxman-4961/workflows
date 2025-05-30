@@ -1,6 +1,8 @@
 name: Postman Collection to APIC Import
-
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
     inputs:
       collection_id:
