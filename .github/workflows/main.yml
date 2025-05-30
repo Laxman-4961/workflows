@@ -124,19 +124,20 @@ jobs:
 
       - name: Commit patched OpenAPI file to repo
         run: |
-          git config --global user.name "laxman"
-          git config --global user.email "lvadapalli@miraclesoft.com"
+    git config --global user.name "laxman"
+    git config --global user.email "lvadapalli@gmail.com"
 
-          FILE_NAME="postman-openapi-${{ env.COLLECTION_UID }}.json"
-          mv "$FILE_NAME" API/"$FILE_NAME"
+    FILE_NAME="postman-openapi-${{ env.COLLECTION_UID }}.json"
+    mv "$FILE_NAME" API/"$FILE_NAME"
 
-          git pull origin main
-          git add API/"$FILE_NAME"
+    git pull origin main
+    git add API/"$FILE_NAME"
 
-          if ! git diff --cached --quiet; then
-            git commit -m "Add/Update patched OpenAPI file from GitHub Actions"
-            git push origin main
-          else
-            echo "No changes to commit."
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    if ! git diff --cached --quiet; then
+      git commit -m "Add/Update patched OpenAPI file from GitHub Actions"
+      git push origin main
+    else
+      echo "No changes to commit."
+  env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
