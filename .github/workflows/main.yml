@@ -133,7 +133,7 @@ jobs:
            mv "$FILE_NAME" API/"$FILE_NAME"
 
           git pull origin main
-          git add API/apic-friendly-secure-import.json
+          git add API/apic-friendly-secure-import-${{ env.COLLECTION_UID }}.json
 
           if ! git diff --cached --quiet; then
             git commit -m "Add/Update patched OpenAPI file from GitHub Actions"
