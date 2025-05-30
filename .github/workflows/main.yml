@@ -126,7 +126,7 @@ jobs:
           echo " apic-friendly-secure-import.json"
 
       - name: Upload generated JSON files
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v3.1.3
         with:
           name: converted-postman-files
           path: |
