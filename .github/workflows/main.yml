@@ -125,7 +125,7 @@ jobs:
           git config --global user.name "laxman"
           git config --global user.email "lvadapalli@gmail.com"
 
-          FILE_NAME="apic-friendly-secure-import.json
+          FILE_NAME="apic-friendly-secure-import.json"
           mv apic-friendly-secure-import.json API/apic-friendly-secure-import.json
 
           git pull origin main
