@@ -1,108 +1,101 @@
-name: Import Postman Collection tess
+name: Postman Collection to APIC Import
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+    inputs:
+      collection_id:
+        description: 'Postman Collection ID'
+        required: true
+        type: string
 
 jobs:
-  import_collection:
+  convert-postman:
     runs-on: ubuntu-latest
+    env:
+      APIKEY: ${{ secrets.POSTMAN_APIKEY }}
 
     steps:
-    - name: Checkout Repo
-      uses: actions/checkout@v3
+      - name: Checkout repo
+        uses: actions/checkout@v3
 
-    - name: Install jq
-      run: sudo apt-get update && sudo apt-get install -y jq
+      - name: Install jq
+        run: sudo apt-get update && sudo apt-get install -y jq
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
+      - name: Run conversion script
+        id: convert
+        shell: bash
+        run: |
+          COLLECTIONID="${{ github.event.inputs.collection_id }}"
+          
+          if [ -z "$APIKEY" ] || [ "$APIKEY" == "FILL-ME-IN-WITH-YOUR-POSTMAN-APIKEY" ]; then
+            echo "ERROR: Please set your POSTMAN APIKEY as a secret named POSTMAN_APIKEY."
+            exit 1
+          fi
 
-    - name: Add npm global bin to PATH
-      run: echo "$(npm bin -g)" >> $GITHUB_PATH
+          if [ -z "$COLLECTIONID" ]; then
+            echo "ERROR: Collection ID must be provided as input."
+            exit 1
+          fi
 
-    - name: Install postman-to-openapi
-      run: |
-        echo "Installing postman-to-openapi CLI..."
-        npm install -g postman-to-openapi
+          echo "Fetching OpenAPI 3.x document for Postman Collection $COLLECTIONID"
+          curl --location --request GET "https://api.getpostman.com/collections/${COLLECTIONID}/transformations" \
+            --header "Content-Type: application/json" \
+            --header "x-api-key: $APIKEY" | jq -r '.output' > postman-openapi-$COLLECTIONID.json
 
-    - name: Verify postman-to-openapi installation
-      run: |
-        which postman-to-openapi
-        postman-to-openapi --version || true
+          sleep 2
 
-    - name: Import Collection to Postman (Create New)
-      env:
-        POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
-        COLLECTION_FILE: API/DocuSeal.json
-      run: |
-        WRAPPED_FILE=$(mktemp)
-        jq -n --argjson collection "$(cat "$COLLECTION_FILE")" '{collection: $collection}' > "$WRAPPED_FILE"
+          echo "Generating 'apic-friendly-secure.json' with Stub Security Scheme Definition"
+          jq -r '. += {"components":{"securitySchemes":{"SecSchemeStub":{"type":"apiKey","x-key-type":"client_id","name":"X-IBM-Client-Id","in":"header"}}},"security":[{"SecSchemeStub":[]}]}' postman-openapi-$COLLECTIONID.json > apic-friendly-secure.json
 
-        echo "Sending collection to Postman..."
-        response=$(curl --location --request POST "https://api.getpostman.com/collections" \
-          --header "X-Api-Key: $POSTMAN_API_KEY" \
-          --header "Content-Type: application/json" \
-          --data @"$WRAPPED_FILE")
+          sleep 2
 
-        echo "Response: $response"
-        COLLECTION_UID=$(echo "$response" | jq -r '.collection.uid')
+          echo "Reading Server URL field ..."
+          URL=$(jq -r '.servers[0].url' apic-friendly-secure.json)
+          echo "Discovered Server URL field $URL ..."
 
-        if [ -z "$COLLECTION_UID" ] || [ "$COLLECTION_UID" == "null" ]; then
-          echo "❌ Failed to import collection. Full response:"
-          echo "$response"
-          exit 1
-        fi
+          sleep 2
 
-        echo "✅ Successfully imported collection. UID: $COLLECTION_UID"
-        echo "COLLECTION_UID=$COLLECTION_UID" >> $GITHUB_ENV
-
-    - name: Fetch Collection JSON from Postman
-      env:
-        POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
-        COLLECTION_UID: ${{ env.COLLECTION_UID }}
-      run: |
-        echo "Fetching collection JSON for $COLLECTION_UID"
-        curl --silent --location --request GET "https://api.getpostman.com/collections/$COLLECTION_UID" \
-          --header "X-Api-Key: $POSTMAN_API_KEY" \
-          --header "Content-Type: application/json" \
-          -o postman-collection.json
-
-    - name: Convert Postman Collection to OpenAPI 3.0
-      run: |
-        echo "Converting to OpenAPI 3.0..."
-        postman-to-openapi postman-collection.json openapi-original.json --pretty --output-version 3.0.0
-
-        echo "✅ Conversion complete. File: openapi-original.json"
-        cat openapi-original.json | jq .
-
-    - name: Patch Security Scheme and Update OpenAPI JSON (IBM APIC)
-      run: |
-        echo "Patching OpenAPI JSON with security schemes and IBM APIC config..."
-
-        cat openapi-original.json | jq '. += {
-          "components": {
-            "securitySchemes": {
-              "SecSchemeStub": {
-                "type": "apiKey",
-                "x-key-type": "client_id",
-                "name": "X-IBM-Client-Id",
-                "in": "header"
+          echo "Populating target-url property and updating invoke definition ..."
+          jq --arg URL "$URL" '. += {
+            "x-ibm-configuration": {
+              "assembly": {
+                "execute": [{
+                  "invoke": {
+                    "version": "2.0.0",
+                    "title": "invoke",
+                    "target-url": "$(target-url)$(request.path)"
+                  }
+                }]
+              },
+              "properties": {
+                "target-url": {
+                  "value": $URL,
+                  "description": "The URL of the target service",
+                  "encoded": false
+                }
               }
             }
-          },
-          "security": [{"SecSchemeStub": []}]
-        }' > apic-friendly-secure.json
+          }' apic-friendly-secure.json > apic-friendly-secure-import.json
 
-        echo "Extracting server URL..."
-        URL=$(jq -r '.servers[0].url' apic-friendly-secure.json)
+          sleep 2
 
-        echo "Injecting IBM APIC configuration with target-url: $URL"
-        jq --arg url "$URL" '. += {
-          "x-ibm-configuration": {
-            "assembly": {
-              "execute": [{
-                "inv
+          echo "Replacing Server URL entry with forward slash to ensure proper URL construction"
+          tmp=$(mktemp)
+          jq '.servers = [{"url": "/"}]' apic-friendly-secure-import.json > "$tmp" && mv "$tmp" apic-friendly-secure-import.json
+
+          echo ""
+          echo "Generated files:"
+          echo " postman-openapi-$COLLECTIONID.json"
+          echo " apic-friendly-secure.json"
+          echo " apic-friendly-secure-import.json"
+          echo ""
+          echo "DONE!"
+
+      - name: Upload generated JSON files
+        uses: actions/upload-artifact@v3
+        with:
+          name: converted-postman-files
+          path: |
+            postman-openapi-${{ github.event.inputs.collection_id }}.json
+            apic-friendly-secure.json
+            apic-friendly-secure-import.json
