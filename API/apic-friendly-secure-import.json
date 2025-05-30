@@ -1,66 +1,51 @@
 {
-  "collection": {
-    "info": {
-      "_postman_id": "ac038a87-7239-4965-a6ca-273285d34f08",
-      "name": "ServiceNow DEV - Import to IBM",
-      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-      "updatedAt": "2025-05-25T04:49:28.000Z",
-      "createdAt": "2025-05-25T04:49:28.000Z",
-      "lastUpdatedBy": "40464893",
-      "uid": "40464893-ac038a87-7239-4965-a6ca-273285d34f08"
-    },
-    "item": [
-      {
-        "name": "New Request",
-        "id": "2658d289-3c15-46ea-89cb-3804c2b04c30",
-        "request": {
-          "auth": {
-            "type": "basic",
-            "basic": [
-              {
-                "key": "password",
-                "value": "12345",
-                "type": "string"
-              },
-              {
-                "key": "username",
-                "value": "midserver",
-                "type": "string"
-              }
-            ]
+  "openapi": "3.0.3",
+  "info": {
+    "title": "ServiceNow DEV - Import to IBM",
+    "version": "1.0.0",
+    "contact": {}
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/api/now/table/incident": {
+      "get": {
+        "summary": "New Request",
+        "description": "New Request",
+        "operationId": "newRequest",
+        "parameters": [
+          {
+            "name": "sysparm_query",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "number%3DAUVIK0004398"
+            }
           },
-          "method": "GET",
-          "header": [],
-          "url": {
-            "raw": "https://hibbettdev.service-now.com/api/now/table/incident?sysparm_query=number%3DAUVIK0004398&sysparm_limit=1",
-            "protocol": "https",
-            "host": [
-              "hibbettdev",
-              "service-now",
-              "com"
-            ],
-            "path": [
-              "api",
-              "now",
-              "table",
-              "incident"
-            ],
-            "query": [
-              {
-                "key": "sysparm_query",
-                "value": "number%3DAUVIK0004398"
-              },
-              {
-                "key": "sysparm_limit",
-                "value": "1"
-              }
-            ]
+          {
+            "name": "sysparm_limit",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
           }
         },
-        "response": [],
-        "uid": "40464893-2658d289-3c15-46ea-89cb-3804c2b04c30"
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
       }
-    ]
+    }
   },
   "components": {
     "securitySchemes": {
@@ -72,6 +57,7 @@
       }
     }
   },
+  "tags": [],
   "security": [
     {
       "SecSchemeStub": []
@@ -91,7 +77,7 @@
     },
     "properties": {
       "target-url": {
-        "value": "null",
+        "value": "https://hibbettdev.service-now.com",
         "description": "The URL of the target service",
         "encoded": false
       }
