@@ -122,6 +122,7 @@ jobs:
           echo ""
           echo "✅ Generated files:"
           echo " postman-openapi-$COLLECTIONID.json"
+          cat postman-openapi-$COLLECTIONID.json
           echo " apic-friendly-secure.json"
           echo " apic-friendly-secure-import.json"
 
