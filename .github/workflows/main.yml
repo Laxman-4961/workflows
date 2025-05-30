@@ -127,11 +127,10 @@ jobs:
           git config --global user.name "laxman"
           git config --global user.email "lvadapalli@gmail.com"
 
-          FILE_NAME="apic-friendly-secure-import.json"
-          mv apic-friendly-secure-import.json API/$FILE_NAME
+          mv apic-friendly-secure-import.json API/apic-friendly-secure-import.json
 
           git pull origin main
-          git add API/$FILE_NAME
+          git add API/apic-friendly-secure-import.json
 
           if ! git diff --cached --quiet; then
             git commit -m "Add/Update patched OpenAPI file from GitHub Actions"
