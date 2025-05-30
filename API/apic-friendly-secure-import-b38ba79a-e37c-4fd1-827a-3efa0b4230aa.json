@@ -1,0 +1,86 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "ServiceNow DEV - Import to IBM",
+    "version": "1.0.0",
+    "contact": {}
+  },
+  "servers": [
+    {
+      "url": "https://hibbettdev.service-now.com"
+    }
+  ],
+  "paths": {
+    "/api/now/table/incident": {
+      "get": {
+        "summary": "New Request",
+        "description": "New Request",
+        "operationId": "newRequest",
+        "parameters": [
+          {
+            "name": "sysparm_query",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "number%3DAUVIK0004398"
+            }
+          },
+          {
+            "name": "sysparm_limit",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "SecSchemeStub": {
+        "type": "apiKey",
+        "x-key-type": "client_id",
+        "name": "X-IBM-Client-Id",
+        "in": "header"
+      }
+    }
+  },
+  "tags": [],
+  "security": [
+    {
+      "SecSchemeStub": []
+    }
+  ],
+  "x-ibm-configuration": {
+    "assembly": {
+      "execute": [
+        {
+          "invoke": {
+            "version": "2.0.0",
+            "title": "invoke",
+            "target-url": "$(target-url)$(request.path)"
+          }
+        }
+      ]
+    },
+    "properties": {
+      "target-url": {
+        "value": "https://hibbettdev.service-now.com",
+        "description": "The URL of the target service",
+        "encoded": false
+      }
+    }
+  }
+}
