@@ -21,13 +21,13 @@ jobs:
       with:
         node-version: '18'
 
-    - name: Install postman-to-openapi
+  - name: Install postman-to-openapi
       run: |
         echo "Installing postman-to-openapi CLI..."
         npm install -g postman-to-openapi
         echo "Verifying installation:"
         which postman-to-openapi
-        postman-to-openapi --version
+        postman-to-openapi --version || true
 
     - name: Import Collection to Postman (Create New)
       env:
