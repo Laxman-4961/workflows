@@ -105,11 +105,11 @@ jobs:
                 }
               }
             }
-          }' apic-friendly-secure.json > apic-friendly-secure-import.json
+          }' apic-friendly-secure.json > apic-friendly-secure-import-$COLLECTIONID.json
 
           echo "Replacing Server URL with '/' to ensure proper construction"
           tmp=$(mktemp)
-          jq '.servers = [{"url": "/"}]' apic-friendly-secure-import.json > "$tmp" && mv "$tmp" apic-friendly-secure-import.json
+          jq '.servers = [{"url": "/"}]' apic-friendly-secure-import-$COLLECTIONID.json> "$tmp" && mv "$tmp" apic-friendly-secure-import.json
 
           echo ""
           echo "✅ Generated files:"
