@@ -66,8 +66,6 @@ jobs:
             --header "Content-Type: application/json" \
             --header "x-api-key: $APIKEY" | jq -r '.output' > postman-openapi-$COLLECTIONID.json
 
-          sleep 2
-
           echo "Generating 'apic-friendly-secure.json' with Stub Security Scheme Definition"
           jq -r '. += {
             "components": {
@@ -83,13 +81,9 @@ jobs:
             "security": [{"SecSchemeStub": []}]
           }' postman-openapi-$COLLECTIONID.json > apic-friendly-secure.json
 
-          sleep 2
-
           echo "Reading Server URL field ..."
           URL=$(jq -r '.servers[0].url' apic-friendly-secure.json)
           echo "Discovered Server URL field: $URL"
-
-          sleep 2
 
           echo "Populating target-url property and updating invoke definition ..."
           jq --arg URL "$URL" '. += {
@@ -113,8 +107,6 @@ jobs:
             }
           }' apic-friendly-secure.json > apic-friendly-secure-import.json
 
-          sleep 2
-
           echo "Replacing Server URL with '/' to ensure proper construction"
           tmp=$(mktemp)
           jq '.servers = [{"url": "/"}]' apic-friendly-secure-import.json > "$tmp" && mv "$tmp" apic-friendly-secure-import.json
@@ -124,6 +116,27 @@ jobs:
           echo " postman-openapi-$COLLECTIONID.json"
           cat postman-openapi-$COLLECTIONID.json
           echo " apic-friendly-secure.json"
+          cat apic-friendly-secure.json
           echo " apic-friendly-secure-import.json"
+          cat apic-friendly-secure-import.json
 
+          echo "COLLECTIONID=$COLLECTIONID" >> $GITHUB_ENV
 
+      - name: Commit patched OpenAPI file to repo
+        run: |
+          git config --global user.name "laxman"
+          git config --global user.email "lvadapalli@miraclesoft.com"
+
+          FILE_NAME="postman-openapi-${{ env.COLLECTION_UID }}.json"
+          mv "$FILE_NAME" API/"$FILE_NAME"
+
+          git pull origin main
+          git add API/"$FILE_NAME"
+
+          if ! git diff --cached --quiet; then
+            git commit -m "Add/Update patched OpenAPI file from GitHub Actions"
+            git push origin main
+          else
+            echo "No changes to commit."
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
