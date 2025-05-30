@@ -117,17 +117,20 @@ jobs:
           cat postman-openapi-$COLLECTIONID.json
           echo " apic-friendly-secure.json"
           cat apic-friendly-secure.json
-          echo " apic-friendly-secure-import.json"
-          cat apic-friendly-secure-import.json
+          echo " apic-friendly-secure-import-$COLLECTIONID.json"
+          cat apic-friendly-secure-import-$COLLECTIONID.json
 
       - name: Commit patched OpenAPI file to repo
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  
         run: |
           git config --global user.name "laxman"
           git config --global user.email "lvadapalli@gmail.com"
 
-          mv apic-friendly-secure-import.json API/apic-friendly-secure-import.json
+
+          FILE_NAME="apic-friendly-secure-import-${{ env.COLLECTION_UID }}.json"
+           mv "$FILE_NAME" API/"$FILE_NAME"
 
           git pull origin main
           git add API/apic-friendly-secure-import.json
