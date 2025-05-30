@@ -22,7 +22,12 @@ jobs:
         node-version: '18'
 
     - name: Install postman-to-openapi
-      run: npm install -g postman-to-openapi
+      run: |
+        echo "Installing postman-to-openapi CLI..."
+        npm install -g postman-to-openapi
+        echo "Verifying installation:"
+        which postman-to-openapi
+        postman-to-openapi --version
 
     - name: Import Collection to Postman (Create New)
       env:
@@ -130,8 +135,4 @@ jobs:
         if ! git diff --cached --quiet; then
           git commit -m "Add/Update patched OpenAPI 3.0 file from GitHub Actions"
           git push origin main
-        else
-          echo "No changes to commit."
-        fi
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        el
