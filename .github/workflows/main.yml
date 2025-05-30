@@ -21,6 +21,9 @@ jobs:
       with:
         node-version: '18'
 
+    - name: Add npm global bin to PATH
+      run: echo "$(npm bin -g)" >> $GITHUB_PATH
+
     - name: Install postman-to-openapi
       run: |
         echo "Installing postman-to-openapi CLI..."
@@ -122,8 +125,6 @@ jobs:
         cat apic-friendly-secure-import.json | jq .
 
     - name: Commit patched OpenAPI file to repo
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         git config --global user.name "laxman"
         git config --global user.email "lvadapalli@miraclesoft.com"
@@ -139,3 +140,5 @@ jobs:
         else
           echo "No changes to commit."
         fi
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
